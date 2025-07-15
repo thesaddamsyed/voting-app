@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.thesaddamsyed.voting_app.model.Poll;
+import com.thesaddamsyed.voting_app.models.Poll;
 import com.thesaddamsyed.voting_app.repositories.PollRepository;
 
 @Service

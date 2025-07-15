@@ -1,4 +1,4 @@
-package com.thesaddamsyed.voting_app.model;
+package com.thesaddamsyed.voting_app.models;
 
 import java.util.ArrayList;
 import java.util.List;

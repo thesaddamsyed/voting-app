@@ -1,4 +1,4 @@
-package com.thesaddamsyed.voting_app.model;
+package com.thesaddamsyed.voting_app.models;
 
 import jakarta.persistence.Embeddable;
 import lombok.Data;
