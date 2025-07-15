@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.thesaddamsyed.voting_app.models.OptionVote;
 import com.thesaddamsyed.voting_app.models.Poll;
 import com.thesaddamsyed.voting_app.repositories.PollRepository;
 
@@ -18,6 +19,7 @@ public class PollService {
     }
 
     public Poll createPoll(Poll poll) {
+        poll.setId(null);
         return pollRepository.save(poll);
     }
 
@@ -29,4 +31,21 @@ public class PollService {
         return pollRepository.findById(id);
     }
 
+    // This method will handle voting logic
+    // It will fetch the poll by ID, increment the vote count for the selected option,
+    public void vote(Long pollId, int optionIndex) {
+        Optional<Poll> poll = getPollById(pollId); // Fetch the poll by ID
+        if (poll.isPresent()) {
+            List<OptionVote> options = poll.get().getOptions();
+            if (optionIndex >= 0 && optionIndex < options.size()) {
+                OptionVote selectedOption = options.get(optionIndex);
+                selectedOption.setVoteCount(selectedOption.getVoteCount() + 1); // Increment the vote count for the selected option
+                pollRepository.save(poll.get()); // Save the updated poll
+            } else {
+                throw new IllegalArgumentException("Invalid option index");
+            }
+        } else {
+            throw new IllegalArgumentException("Poll not found");
+        }
+    }
 }
