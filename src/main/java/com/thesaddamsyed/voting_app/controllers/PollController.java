@@ -2,9 +2,9 @@ package com.thesaddamsyed.voting_app.controllers;
 
 import java.util.List;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,5 +48,10 @@ public class PollController {
     public void vote(@RequestBody Vote vote) { 
         pollService.vote(vote.getPollId(), vote.getOptionIndex());
         // The vote method in PollService handles the logic of incrementing the vote count for the selected option
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deletePoll(@PathVariable Long id) {
+        pollService.deletePoll(id);
     }
 }
