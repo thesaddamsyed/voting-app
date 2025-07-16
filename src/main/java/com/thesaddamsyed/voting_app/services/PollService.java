@@ -23,6 +23,7 @@ public class PollService {
         return pollRepository.save(poll);
     }
 
+     
     public List<Poll> getAllPolls() {
         return pollRepository.findAll();
     }
@@ -47,5 +48,9 @@ public class PollService {
         } else {
             throw new IllegalArgumentException("Poll not found");
         }
+    }
+
+    public void deletePoll(Long id) {
+        pollRepository.deleteById(id);
     }
 }
